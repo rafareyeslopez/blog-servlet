@@ -23,8 +23,8 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public void create(String name, String url, String userEmail) {
-		Blog blog = new Blog(null, name, url, userEmail, null, null);
+	public void create(String name, String url, String userEmail, String[] categories) {
+		Blog blog = new Blog(null, name, url, userEmail, categories, null);
 
 		dao.create(blog);
 

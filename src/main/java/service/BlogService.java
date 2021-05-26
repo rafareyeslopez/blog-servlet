@@ -9,7 +9,7 @@ public interface BlogService {
 
 	List<Blog> getUserBlogs(String email);
 
-	void create(String name, String url, String userEmail);
+	void create(String name, String url, String userEmail, String[] strings);
 
 	/**
 	 * @param parameter

@@ -11,21 +11,22 @@ CREATE TABLE IF NOT EXISTS blog (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	name varchar(50) NOT NULL,  
 	url varchar(50) NOT NULL,
-	user_email varchar(50) NOT NULL
+	user_email varchar(50) NOT NULL,
+	categories varchar(50)
 );
 
 
-CREATE TABLE IF NOT EXISTS categories (
-	id integer PRIMARY KEY AUTOINCREMENT,
-	name varchar(50) NOT NULL
-);
+-- CREATE TABLE IF NOT EXISTS categories (
+-- 	id integer PRIMARY KEY AUTOINCREMENT,
+-- 	name varchar(50) NOT NULL
+-- );
 
 
-CREATE TABLE IF NOT EXISTS blog_categories (
-	id_blog integer NOT NULL,
-	id_category integer NOT NULL,  
-  PRIMARY KEY (id_blog,id_category)
-);
+-- CREATE TABLE IF NOT EXISTS blog_categories (
+--	id_blog integer NOT NULL,
+--	id_category integer NOT NULL,  
+--  PRIMARY KEY (id_blog,id_category)
+-- );
 
 
 CREATE TABLE IF NOT EXISTS posts (

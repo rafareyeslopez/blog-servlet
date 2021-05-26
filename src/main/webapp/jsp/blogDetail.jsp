@@ -53,9 +53,12 @@
 								<i class="far fa-eye">Edit</i>
 							</button>
 						</a>
-						<!-- <button type="button" class="btn btn-success">
-							<i class="fas fa-edit"></i>
-						</button> -->
+						<a
+							href="<%=request.getContextPath()%>/jsp/addattachment.jsp">
+						 <button type="button" class="btn btn-success">
+							<i class="fas fa-edit"Upload file></i>
+						</button> 
+						</a>
 						<a
 							href="<%=request.getContextPath()%>/deletepost?postId=${post.id}&blogId=${ post.blogId}">
 							<button type="button" class="btn btn-danger">

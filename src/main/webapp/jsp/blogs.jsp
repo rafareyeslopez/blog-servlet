@@ -54,7 +54,13 @@
       </th>
       <td> ${b.name }</td>
       <td>${b.url }</td>
-      <td>ghgf</td>
+      <td>
+      <c:forEach items="${b.categories}" var="item">
+    	${item} <br/>
+</c:forEach>
+      
+      
+      </td>
       <c:if test="${not empty sessionScope.useremail && b.userEmail==sessionScope.useremail}">
          <td>
               <a href="<%=request.getContextPath()%>/jsp/addpost.jsp?blogId=${b.id }"> <button type="button" class="btn btn-primary"><i class="far fa-eye">Add Post</i></button></a>

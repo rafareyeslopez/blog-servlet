@@ -27,7 +27,7 @@ public class AddBlog extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		blogService.create(req.getParameter("name"), req.getParameter("url"),
-				req.getSession().getAttribute("useremail").toString());
+				req.getSession().getAttribute("useremail").toString(), req.getParameterValues("categories"));
 
 		req.setAttribute("blogs", blogService.getUserBlogs(req.getSession().getAttribute("useremail").toString()));
 		RequestDispatcher rdObj = req.getRequestDispatcher("/jsp/blogs.jsp");

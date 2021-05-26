@@ -26,6 +26,16 @@
                             <label for="url">URL:</label>
                             <input type="url" id="url" class="form-control" name="url"><br>
                         </div>
+                        <div class="form-group">
+                        <label for="categories">Choose the categories:</label>
+
+					<select name="categories" id="categories" multiple>
+					  <option value="java">Java</option>
+					  <option value="pyhton">Python</option>
+					  <option value="docker">Docker</option>
+					  <option value="mysql">MySQL</option>
+					</select>
+					</div>
 
                         <button type="submit" id="add" class="btn btn-primary">Add</button>
                     </form>

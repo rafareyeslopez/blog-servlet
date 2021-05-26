@@ -11,7 +11,7 @@ public class Blog implements Serializable {
 	private String name;
 	private String url;
 	private String userEmail;
-	private List<Categories> categories;
+	private String[] categories;
 	private List<Post> posts;
 
 	/**
@@ -22,7 +22,7 @@ public class Blog implements Serializable {
 	 * @param categories
 	 * @param posts
 	 */
-	public Blog(Integer id, String name, String url, String userEmail, List<Categories> categories, List<Post> posts) {
+	public Blog(Integer id, String name, String url, String userEmail, String[] categories, List<Post> posts) {
 		this.id = id;
 		this.name = name;
 		this.url = url;
@@ -63,11 +63,11 @@ public class Blog implements Serializable {
 		this.userEmail = userEmail;
 	}
 
-	public List<Categories> getCategories() {
+	public String[] getCategories() {
 		return categories;
 	}
 
-	public void setCategories(List<Categories> categories) {
+	public void setCategories(String[] categories) {
 		this.categories = categories;
 	}
 

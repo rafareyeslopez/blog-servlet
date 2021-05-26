@@ -27,7 +27,7 @@ public class BlogDAOJDBCimpl implements BlogDAO {
 			while (rs.next()) {
 
 				blogs.add(new Blog(rs.getInt("id"), rs.getString("name"), rs.getString("url"),
-						rs.getString("user_email"), null, null));
+						rs.getString("user_email"), rs.getString("categories").trim().split(","), null));
 			}
 
 			ps.close();
@@ -41,10 +41,20 @@ public class BlogDAOJDBCimpl implements BlogDAO {
 	public void create(Blog blog) {
 		try {
 			Connection conn = Database.getConnection();
-			PreparedStatement ps = conn.prepareStatement("insert into blog (name,url, user_email) values (?,?,?)");
+			PreparedStatement ps = conn
+					.prepareStatement("insert into blog (name,url, user_email,categories) values (?,?,?,?)");
 			ps.setString(1, blog.getName());
 			ps.setString(2, blog.getUrl());
 			ps.setString(3, blog.getUserEmail());
+
+			String categoriesCsv = "";
+
+			for (int i = 0; i < blog.getCategories().length; i++) {
+				categoriesCsv += blog.getCategories()[i] + ", ";
+			}
+			categoriesCsv = categoriesCsv.substring(0, categoriesCsv.length() - 2);
+
+			ps.setString(4, categoriesCsv);
 			ps.execute();
 			ps.close();
 		} catch (SQLException throwables) {
