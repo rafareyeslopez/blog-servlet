@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS posts (
 	content varchar(50) NOT NULL,
 	created_at TIMESTAMP NOT NULL,
 	updated_at TIMESTAMP NOT NULL,
-	blog_id integer NOT NULL
+	blog_id integer NOT NULL,
+	attachment_path varchar(200)
 );
 
 

@@ -57,4 +57,10 @@ public interface BlogService {
 	 */
 	void publishComment(Integer commentId);
 
+	/**
+	 * @param postId
+	 * @param string
+	 */
+	void addAttachmentPost(String postId, String filePath);
+
 }

@@ -29,4 +29,6 @@ public interface BlogDAO {
 	void deleteCommentById(Integer commentId);
 
 	void publishComment(Integer commentId);
+
+	void addAttachmentPost(String postId, String filePath);
 }

@@ -95,4 +95,10 @@ public class BlogServiceImpl implements BlogService {
 
 	}
 
+	@Override
+	public void addAttachmentPost(String postId, String filePath) {
+		dao.addAttachmentPost(postId, filePath);
+
+	}
+
 }

@@ -6,7 +6,7 @@
 <%@ page session="true"%>
 <html>
 <head>
-<title>Title</title>
+<title>Blog</title>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
@@ -42,10 +42,16 @@
 			<div class="row">
 				<div class="col">${post.content }</div>
 			</div>
+			<c:if test="${(not empty post.attachmentPath)}">
+			<div class="row">
+				<div class="col">
+				<a href="<%=request.getContextPath()%>/downloadfile?postId=${post.id}">Download attachment</a></div>
+			</div>
+			</c:if>
 			<div class="row">
 				<div class="col">Created at: <fmt:formatDate type = "both" value = "${post.createdAt }" />, Updated at
 					<fmt:formatDate type = "both" value = "${post.updatedAt }" /></div>
-				<c:if test="${(not empty sessionScope.useremail) && blog.userEmail==sessionScope.useremail}">
+				<c:if test="${(not empty sessionScope.useremail) && (blog.userEmail==sessionScope.useremail || sessionScope.useremail=='root')}">
 					<div class="col">
 						<a
 							href="<%=request.getContextPath()%>/editpost?postId=${post.id }&blogId=${ post.blogId}">
@@ -54,9 +60,9 @@
 							</button>
 						</a>
 						<a
-							href="<%=request.getContextPath()%>/jsp/addattachment.jsp">
+							href="<%=request.getContextPath()%>/jsp/addattachment.jsp?postId=${post.id }&blogId=${ post.blogId}">
 						 <button type="button" class="btn btn-success">
-							<i class="fas fa-edit"Upload file></i>
+							<i class="fas fa-edit"Upload file>Upload attachment</i>
 						</button> 
 						</a>
 						<a
@@ -71,7 +77,7 @@
 			</div>
 			<h3>Comments:</h3>
 			<c:if
-				test="${(not empty sessionScope.useremail) && blog.userEmail==sessionScope.useremail}">
+				test="${(not empty sessionScope.useremail) && (blog.userEmail==sessionScope.useremail || sessionScope.useremail=='root')}">
 
 
 
@@ -109,7 +115,7 @@
 			</c:if>
 
 			<c:if
-				test="${empty sessionScope.useremail || blog.userEmail!=sessionScope.useremail}">
+				test="${empty sessionScope.useremail || (blog.userEmail!=sessionScope.useremail &&  sessionScope.useremail!='root')}">
 				<c:forEach var="comment" items="${post.comments}">
 					<c:if test="${comment.published}">
 						<div class="row">

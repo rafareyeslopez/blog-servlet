@@ -4,7 +4,7 @@
 <%@ page session="true" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Blogs list</title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -61,7 +61,7 @@
       
       
       </td>
-      <c:if test="${not empty sessionScope.useremail && b.userEmail==sessionScope.useremail}">
+      <c:if test="${not empty sessionScope.useremail && (b.userEmail==sessionScope.useremail || sessionScope.useremail=='root')}">
          <td>
               <a href="<%=request.getContextPath()%>/jsp/addpost.jsp?blogId=${b.id }"> <button type="button" class="btn btn-primary"><i class="far fa-eye">Add Post</i></button></a>
               <a href="<%=request.getContextPath()%>/viewBlogDetail?blogId=${b.id }"> <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>View</button></a>

@@ -136,7 +136,7 @@ public class BlogDAOJDBCimpl implements BlogDAO {
 					}
 					posts.add(new Post(rs2.getInt("id"), rs2.getString("title"), rs2.getString("content"),
 							rs2.getTimestamp("created_at"), rs2.getTimestamp("updated_at"), rs2.getInt("blog_id"),
-							comments));
+							comments, rs2.getString("attachment_path")));
 					ps3.close();
 
 				}
@@ -170,7 +170,8 @@ public class BlogDAOJDBCimpl implements BlogDAO {
 			if (rs.next()) {
 
 				return new Post(rs.getInt("id"), rs.getString("title"), rs.getString("content"),
-						rs.getTimestamp("created_at"), rs.getTimestamp("updated_at"), rs.getInt("blog_id"), null);
+						rs.getTimestamp("created_at"), rs.getTimestamp("updated_at"), rs.getInt("blog_id"), null,
+						rs.getString("attachment_path"));
 			}
 
 			ps.close();
@@ -265,6 +266,23 @@ public class BlogDAOJDBCimpl implements BlogDAO {
 			Connection conn = Database.getConnection();
 			PreparedStatement ps = conn.prepareStatement("update comment set published=1 where id=?");
 			ps.setInt(1, commentId);
+
+			ps.execute();
+			ps.close();
+
+		} catch (SQLException throwables) {
+			throwables.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void addAttachmentPost(String postId, String filePath) {
+		try {
+			Connection conn = Database.getConnection();
+			PreparedStatement ps = conn.prepareStatement("update posts set attachment_path=? where id=?");
+			ps.setString(1, filePath);
+			ps.setString(2, postId);
 
 			ps.execute();
 			ps.close();

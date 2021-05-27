@@ -15,16 +15,11 @@ public class Post implements Serializable {
 	private Timestamp updatedAt;
 	private Integer blogId;
 	private List<Comment> comments;
+	private String attachmentPath;
 
-	/**
-	 * @param id
-	 * @param title
-	 * @param content
-	 * @param createdAt
-	 * @param updatedAt
-	 * @param blogId
-	 * @param comments
-	 */
+	public Post() {
+	}
+
 	public Post(Integer id, String title, String content, Timestamp createdAt, Timestamp updatedAt, Integer blogId,
 			List<Comment> comments) {
 		this.id = id;
@@ -34,6 +29,19 @@ public class Post implements Serializable {
 		this.updatedAt = updatedAt;
 		this.blogId = blogId;
 		this.comments = comments;
+		attachmentPath = null;
+	}
+
+	public Post(Integer id, String title, String content, Timestamp createdAt, Timestamp updatedAt, Integer blogId,
+			List<Comment> comments, String attachmentPath) {
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+		this.blogId = blogId;
+		this.comments = comments;
+		this.attachmentPath = attachmentPath;
 	}
 
 	public Integer getId() {
@@ -90,6 +98,14 @@ public class Post implements Serializable {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+
+	public String getAttachmentPath() {
+		return attachmentPath;
+	}
+
+	public void setAttachmentPath(String attachmentPath) {
+		this.attachmentPath = attachmentPath;
 	}
 
 }
