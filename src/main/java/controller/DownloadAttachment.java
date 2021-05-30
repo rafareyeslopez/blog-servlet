@@ -28,15 +28,15 @@ public class DownloadAttachment extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		res.setContentType("text/html");
+		// res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 		Integer postId = Integer.parseInt(req.getParameter("postId"));
 
 		Post post = blogService.getPost(postId);
 
 		res.setContentType("APPLICATION/OCTET-STREAM");
-		// res.setHeader("Content-Disposition", "attachment; filename=\"" + filename +
-		// "\"");
+		res.setHeader("Content-Disposition", "attachment; filename=\""
+				+ post.getAttachmentPath().substring(post.getAttachmentPath().lastIndexOf("\\")) + "\"");
 
 		FileInputStream fileInputStream = new FileInputStream(post.getAttachmentPath());
 

@@ -29,8 +29,8 @@ public class AddPost extends HttpServlet {
 		blogService.addPost(req.getParameter("title"), req.getParameter("content"),
 				Integer.parseInt(req.getParameter("blogId")));
 
-		req.setAttribute("blogs", blogService.getUserBlogs(req.getSession().getAttribute("useremail").toString()));
-		RequestDispatcher rdObj = req.getRequestDispatcher("/jsp/blogs.jsp");
+		req.setAttribute("blog", blogService.getBlogDetail(req.getParameter("blogId")));
+		RequestDispatcher rdObj = req.getRequestDispatcher("/jsp/blogDetail.jsp");
 		rdObj.include(req, resp);
 	}
 }

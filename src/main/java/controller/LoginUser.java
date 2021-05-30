@@ -35,7 +35,7 @@ public class LoginUser extends HttpServlet {
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
 
-		if (email.equals("root") && password.equals("root")) {
+		if (email.equals("root@root.com") && password.equals("root")) {
 
 			HttpSession session = req.getSession();
 			session.setAttribute("useremail", email);

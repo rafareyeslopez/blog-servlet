@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import service.BlogService;
 import service.BlogServiceImpl;
 
+/**
+ * Servlet para crear un nuevo blog.
+ *
+ */
 @WebServlet(value = "/addblog")
 public class AddBlog extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +33,10 @@ public class AddBlog extends HttpServlet {
 		blogService.create(req.getParameter("name"), req.getParameter("url"),
 				req.getSession().getAttribute("useremail").toString(), req.getParameterValues("categories"));
 
-		req.setAttribute("blogs", blogService.getUserBlogs(req.getSession().getAttribute("useremail").toString()));
+		// Anteriormente recogiamos
+		// req.setAttribute("blogs",
+		// blogService.getUserBlogs(req.getSession().getAttribute("useremail").toString()));
+		req.setAttribute("blogs", blogService.getAllBlogs());
 		RequestDispatcher rdObj = req.getRequestDispatcher("/jsp/blogs.jsp");
 		rdObj.include(req, resp);
 	}

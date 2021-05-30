@@ -31,7 +31,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <!-- <th scope="col">#</th>  -->
       <th scope="col">Name</th>
       <th scope="col">URL</th>
       <th scope="col">Categories</th>
@@ -47,12 +47,17 @@
 <c:forEach var="b" items="${blogs}">
 
     <tr>
-      <th scope="row">
+      <!-- <th scope="row">
       	<a href="<%=request.getContextPath()%>/viewBlogDetail?blogId=${b.id }">
 	      ${b.id }
 	    </a>
-      </th>
-      <td> ${b.name }</td>
+      </th>  -->
+      
+      <td>
+      <a href="<%=request.getContextPath()%>/viewBlogDetail?blogId=${b.id }">
+       ${b.name }
+       </a>
+       </td>
       <td>${b.url }</td>
       <td>
       <c:forEach items="${b.categories}" var="item">
@@ -61,7 +66,8 @@
       
       
       </td>
-      <c:if test="${not empty sessionScope.useremail && (b.userEmail==sessionScope.useremail || sessionScope.useremail=='root')}">
+      
+      <c:if test="${not empty sessionScope.useremail && (b.userEmail==sessionScope.useremail || sessionScope.useremail=='root@root.com')}">
          <td>
               <a href="<%=request.getContextPath()%>/jsp/addpost.jsp?blogId=${b.id }"> <button type="button" class="btn btn-primary"><i class="far fa-eye">Add Post</i></button></a>
               <a href="<%=request.getContextPath()%>/viewBlogDetail?blogId=${b.id }"> <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>View</button></a>

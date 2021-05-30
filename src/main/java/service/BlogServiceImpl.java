@@ -72,7 +72,7 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public void addComment(int postId, String content, String user) {
-		Comment comment = new Comment(null, content, new Timestamp(System.currentTimeMillis()), false, user, postId);
+		Comment comment = new Comment(null, content, new Timestamp(System.currentTimeMillis()), false, null, postId);
 
 		if (user != null && user.length() > 0) {
 			comment.setUserEmail(user);

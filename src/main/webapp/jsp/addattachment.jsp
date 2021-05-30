@@ -17,10 +17,11 @@
             <div class="card">
                 <div class="card-body">
                 	<h1>Add attachment</h1>
-                	<form method="post" action="<%=request.getContextPath()%>/uploadfile" enctype="multipart/form-data" class="container">>
+                	<form method="post" action="<%=request.getContextPath()%>/uploadfile" enctype="multipart/form-data" class="container">
                         <div class="form-group">
                             <label for="content">Choose a file:</label>
-                            <input type="file" name="multiPartServlet"/><input type="submit" value="Upload"/>
+                            <input type="file" name="multiPartServlet"/>
+                            <!-- <input type="submit" value="Upload"/>  -->
                         
 <input type="hidden" name="blogId" value="<%= request.getParameter("blogId") %>">
                         <input type="hidden" name="postId" value="<%= request.getParameter("postId") %>">
@@ -41,19 +42,3 @@
 
 
 
-
-
-<html>
-
-
-
-<body>
-    <div>Upload file</div>
-    <form method="post" action="<%=request.getContextPath()%>/uploadfile" enctype="multipart/form-data">
-        Choose a file: <input type="file" name="multiPartServlet"/><input type="submit" value="Upload"/>
-        
-          <input type="hidden" name="blogId" value="<%= request.getParameter("blogId") %>">
-                        <input type="hidden" name="postId" value="<%= request.getParameter("postId") %>">
-    </form>
-</body>
-</html>

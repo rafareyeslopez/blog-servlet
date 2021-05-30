@@ -94,7 +94,7 @@ public class BlogDAOJDBCimpl implements BlogDAO {
 			while (rs.next()) {
 
 				blogs.add(new Blog(rs.getInt("id"), rs.getString("name"), rs.getString("url"),
-						rs.getString("user_email"), null, null));
+						rs.getString("user_email"), rs.getString("categories").split(","), null));
 			}
 
 			ps.close();

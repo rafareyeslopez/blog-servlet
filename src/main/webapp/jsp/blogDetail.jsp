@@ -42,16 +42,18 @@
 			<div class="row">
 				<div class="col">${post.content }</div>
 			</div>
+			<br/>
 			<c:if test="${(not empty post.attachmentPath)}">
 			<div class="row">
 				<div class="col">
 				<a href="<%=request.getContextPath()%>/downloadfile?postId=${post.id}">Download attachment</a></div>
+				<br/>
 			</div>
 			</c:if>
 			<div class="row">
 				<div class="col">Created at: <fmt:formatDate type = "both" value = "${post.createdAt }" />, Updated at
 					<fmt:formatDate type = "both" value = "${post.updatedAt }" /></div>
-				<c:if test="${(not empty sessionScope.useremail) && (blog.userEmail==sessionScope.useremail || sessionScope.useremail=='root')}">
+				<c:if test="${(not empty sessionScope.useremail) && (blog.userEmail==sessionScope.useremail || sessionScope.useremail=='root@root.com')}">
 					<div class="col">
 						<a
 							href="<%=request.getContextPath()%>/editpost?postId=${post.id }&blogId=${ post.blogId}">
@@ -77,7 +79,7 @@
 			</div>
 			<h3>Comments:</h3>
 			<c:if
-				test="${(not empty sessionScope.useremail) && (blog.userEmail==sessionScope.useremail || sessionScope.useremail=='root')}">
+				test="${(not empty sessionScope.useremail) && (blog.userEmail==sessionScope.useremail || sessionScope.useremail=='root@root.com')}">
 
 
 
@@ -85,7 +87,7 @@
 
 
 					<div class="row">
-						<div class="col">${comment.userEmail }-<fmt:formatDate type = "both" value = "${comment.createdAt }" /></div>
+						<div class="col">${comment.userEmail } - <fmt:formatDate type = "both" value = "${comment.createdAt }" /></div>
 					</div>
 					<div class="row">
 						<div class="col">${comment.content }</div>
@@ -115,11 +117,11 @@
 			</c:if>
 
 			<c:if
-				test="${empty sessionScope.useremail || (blog.userEmail!=sessionScope.useremail &&  sessionScope.useremail!='root')}">
+				test="${empty sessionScope.useremail || (blog.userEmail!=sessionScope.useremail &&  sessionScope.useremail!='root@root.com')}">
 				<c:forEach var="comment" items="${post.comments}">
 					<c:if test="${comment.published}">
 						<div class="row">
-							<div class="col">${comment.userEmail }-<fmt:formatDate type = "both" value = "${comment.createdAt }" /></div>
+							<div class="col">${comment.userEmail } - <fmt:formatDate type = "both" value = "${comment.createdAt }" /></div>
 						</div>
 						<div class="row">
 							<div class="col">${comment.content }</div>
